@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="design.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello</title>
+</head>
+<body>
+    <div class="sun">
+        <span id="text-el">Sun</span>
+        <div class="outer_sun">
+            <div class="inner_sun">
+                <div class="core_sun"></div>
+             </div>
+        </div>
+    </div>
+    <div class="moon">
+    </div>
+    <script>
+        const inner_sun = document.querySelector(".inner_sun");
+        const outer_sun = document.querySelector(".outer_sun");
+        const core_sun = document.querySelector(".core_sun");
+
+        const moon = document.querySelector(".moon")
+
+        let text = document.getElementById("text-el");
+
+        let sun_x = 100;
+        let sun_y = 100;
+        
+        let sun_vel_x_left = 0;
+        let sun_vel_x_right = 0;
+        let sun_vel_y_up = 0;
+        let sun_vel_y_down = 0;
+
+        //Setting up the coordinates
+
+        function frames(){
+            
+            inner_sun.style.left = sun_x + "px";
+            inner_sun.style.top = sun_y + "px";
+
+            core_sun.style.left = sun_x + "px";
+            core_sun.style.top = sun_y + "px";
+
+            outer_sun.style.position = "absolute";
+            outer_sun.style.left = sun_x + "px";
+            outer_sun.style.top = sun_y + "px";
+
+            text.style.position = "absolute";
+            text.style.left = sun_x + "px";
+            text.style.top = sun_y + "px";
+
+            sun_x += sun_vel_x_left;
+            sun_x += sun_vel_x_right;
+            sun_y += sun_vel_y_up;
+            sun_y += sun_vel_y_down;
+
+            
+            if (sun_x >= 1520 - inner_sun.style.width){
+                sun_vel_x_right = -sun_vel_x_right;
+            }
+            if (sun_x <= 0){
+                sun_vel_x_left = -sun_vel_x_left;
+            }
+            if (sun_y <= 0){
+                sun_vel_y_up = -sun_vel_y_up
+            }
+            if (sun_y >= 1720 - inner_sun.style.height){
+                sun_vel_y_down = -sun_vel_y_down;
+            }
+            
+            requestAnimationFrame(frames);
+        }
+
+        frames();
+
+        //Frames is an important function because thats where the animation frames are requested
+
+        addEventListener("keydown", (e) => {
+            switch (e.code){
+                case "KeyD":
+                    sun_vel_x_right = 10;
+                    break;
+                case "KeyA":
+                    sun_vel_x_left = -10;
+                    break;
+                case "KeyW":
+                    sun_vel_y_up = -10
+                    break;
+                case "KeyS":
+                    sun_vel_y_down = 10;
+                    break;
+            }
+        });
+
+        addEventListener("keyup", (e) => {
+            switch (e.code){
+                case "KeyD":
+                    sun_vel_x_right = 0;
+                    break;
+                case "KeyA":
+                    sun_vel_x_left = 0;
+                    break;
+                case "KeyW":
+                    sun_vel_y_up = 0
+                    break;
+                case "KeyS":
+                    sun_vel_y_down = 0;
+                    break;
+            }
+        });
+        let clicks = 0;
+        moon.addEventListener("click", () => {
+            
+            text.innerText = "You clicked on the moon";
+            clicks += 1;
+            if (clicks >= 2){
+                text.innerText = "You clicked on the moon " + clicks + " times."
+                console.log(clicks)
+            }
+            })
+
+
+        //Event listener for controls
+    </script>
+</body>
+</html>

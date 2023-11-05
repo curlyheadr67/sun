@@ -1,0 +1,57 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    font-weight: bold;
+    -webkit-text-stroke: 1px 1px black;
+    color: white;
+    background: rgb(25, 25, 31)
+    
+}
+
+@keyframes glow {
+    from {width: 150px; height: 150px;}
+    to {width: 200px; height: 200px;}
+}
+
+@keyframes reverse_glow {
+    from {transform: scale(0px)}
+}
+
+.outer_sun {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 800px;
+    height: 800px;
+    background: rgba(238, 153, 27, 0.938);
+    border-radius: 50%;
+}
+
+.inner_sun {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 300px;
+    height: 300px;
+    background: rgba(236, 181, 0, 0.938);
+    border-radius: 50%;
+}
+
+.core_sun {
+    width: 150px;
+    height: 150px;
+    background: rgb(255, 217, 0);
+    border-radius: 50%;
+    animation: glow 1s alternate infinite;
+}
+
+.moon {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    background: rgba(204, 204, 204, 0.938);
+    border-radius: 50%;
+}
